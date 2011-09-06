@@ -88,7 +88,7 @@ Group:		Development/Languages/Python
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 Requires:	python3-devel
-Requires:	python3-pygobject = %{version}-%{release}
+Requires:	python3-pygobject3 = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
 This package contains files required to build wrappers for GObject
@@ -103,7 +103,6 @@ Summary:	Example programs for GObject library
 Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	python-pygtk
 
 %description examples
 This package contains example programs for GObject library.
@@ -204,7 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/gi/_gobject
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
-%{py_sitedir}/gtk-2.0/*.py[co]
+#%{py_sitedir}/gtk-2.0/*.py[co]
 %dir %{_datadir}/%{module}
 %dir %{_datadir}/%{module}/xsl
 
@@ -237,13 +236,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/gi/_glib
 %attr(755,root,root) %{py3_sitedir}/gi/_glib/_glib.*so
 %{py3_sitedir}/gi/_glib/*.py*
-M
 #%{py3_sitedir}/glib/__pycache__
 %dir %{py3_sitedir}/gi/_gobject
 %attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.*so
 %{py3_sitedir}/gi/_gobject/*.py*
 #%{py3_sitedir}/gobject/__pycache__
-%{py3_sitedir}/gtk-2.0/*.py*
+#%{py3_sitedir}/gtk-2.0/*.py*
 #%{py3_sitedir}/gtk-2.0/__pycache__
 
 %files -n python3-pygobject3-devel
