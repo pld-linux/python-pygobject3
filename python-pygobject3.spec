@@ -1,5 +1,4 @@
 # TODO:
-# - pygobject-3.0.pc is overwrited by python2 version
 # - header file is needed by python-pygobject3-devel and python3-pygobject3-devel
 #
 # Conditional build:
@@ -11,12 +10,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
-Version:	2.90.3
+Version:	2.90.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.90/%{module}-%{version}.tar.xz
-# Source0-md5:	713d9fc47fb416adf8d4e50b3f0c05a8
+# Source0-md5:	6dabf53b89f569ff429ebd9c1fd03cad
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -171,6 +170,7 @@ cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %if %{with python2}
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gi/{*/,}/*.la
+%py_postclean
 %endif
 %if %{with python3}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/gi/{*/,}*.la
@@ -188,7 +188,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpyglib-gi-2.0-python.so.0
-%dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gi
 %dir %{py_sitedir}/gi/overrides
 %{py_sitedir}/gi/overrides/*.py[co]
@@ -203,17 +202,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/gi/_gobject
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
-#%{py_sitedir}/gtk-2.0/*.py[co]
-%dir %{_datadir}/%{module}
-%dir %{_datadir}/%{module}/xsl
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python.so
 %{_includedir}/pygobject-3.0
 %{_pkgconfigdir}/pygobject-3.0.pc
-%{_datadir}/%{module}/xsl/*.py
-%{_datadir}/%{module}/xsl/*.xsl
 %endif
 
 %if %{with python3}
@@ -241,8 +235,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.*so
 %{py3_sitedir}/gi/_gobject/*.py*
 #%{py3_sitedir}/gobject/__pycache__
-#%{py3_sitedir}/gtk-2.0/*.py*
-#%{py3_sitedir}/gtk-2.0/__pycache__
 
 %files -n python3-pygobject3-devel
 %defattr(644,root,root,755)
@@ -253,6 +245,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
 
-%files apidocs
-%defattr(644,root,root,755)
-%{_gtkdocdir}/%{module}
+#%files apidocs
+#%defattr(644,root,root,755)
+#%{_gtkdocdir}/%{module}
