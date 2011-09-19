@@ -59,12 +59,12 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 
-%description devel
+%description common-devel
 This package contains headers files required to build wrappers
 for GObject addon libraries so that they interoperate with Python
 bindings.
 
-%description devel -l pl.UTF-8
+%description common-devel -l pl.UTF-8
 Pakiet zawiera pliki nagłówkowe wymagane do zbudowania funkcji 
 do biblioteki GObject, tak by mogły te biblioteki kooperowaći
 z wiązaniami Pythona.
