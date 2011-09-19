@@ -10,20 +10,19 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
-Version:	2.90.4
+Version:	3.0.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.90/%{module}-%{version}.tar.xz
-# Source0-md5:	6dabf53b89f569ff429ebd9c1fd03cad
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.0/%{module}-%{version}.tar.xz
+# Source0-md5:	42b940ec9ed64b1c5f0e79164cd0c93f
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 1:2.24.0
-BuildRequires:	gobject-introspection-devel >= 0.10.2
+BuildRequires:	gobject-introspection-devel >= 1.29.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
-BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
@@ -34,13 +33,13 @@ BuildRequires:	python-pycairo-devel >= 1.2.0
 %pyrequires_eq	python-modules
 %endif
 %if %{with python3}
-BuildRequires:	python3
-BuildRequires:	python3-devel
-BuildRequires:	python3-modules
-BuildRequires:	python3-pycairo-devel >= 1.8.10
+BuildRequires:	python3 >= 3.1
+BuildRequires:	python3-devel >= 3.1
+BuildRequires:	python3-modules >= 3.1
+BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.24.0
-Requires:	gobject-introspection >= 0.9.5
+Requires:	gobject-introspection >= 1.29.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # python provides Py* and _Py* symbols at runtime
@@ -52,11 +51,30 @@ Python bindings for GObject library.
 %description -l pl.UTF-8
 Wiązania Pythona do biblioteki GObject.
 
+%package common-devel
+Summary:	Python bindings for GObject library
+Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
+Group:		Development/Languages/Python
+Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.24.0
+Requires:	libffi-devel >= 3.0
+
+%description devel
+This package contains headers files required to build wrappers
+for GObject addon libraries so that they interoperate with Python
+bindings.
+
+%description devel -l pl.UTF-8
+Pakiet zawiera pliki nagłówkowe wymagane do zbudowania funkcji 
+do biblioteki GObject, tak by mogły te biblioteki kooperowaći
+z wiązaniami Pythona.
+
 %package devel
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.5.2
@@ -86,8 +104,9 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
-Requires:	python3-devel
+Requires:	python3-devel >= 3.1
 Requires:	python3-pygobject3 = %{version}-%{release}
+Requires:	%{name}-common-devel = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
 This package contains files required to build wrappers for GObject
@@ -203,11 +222,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
 
+%files common-devel
+%defattr(644,root,root,755)
+%{_includedir}/pygobject-3.0
+%{_pkgconfigdir}/pygobject-3.0.pc
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python.so
-%{_includedir}/pygobject-3.0
-%{_pkgconfigdir}/pygobject-3.0.pc
 %endif
 
 %if %{with python3}
