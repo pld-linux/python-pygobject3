@@ -1,0 +1,69 @@
+--- pygobject-3.0.0/gi/Makefile.am.wiget	2011-09-24 19:46:02.886052379 +0200
++++ pygobject-3.0.0/gi/Makefile.am	2011-09-24 19:46:24.461794869 +0200
+@@ -12,13 +12,13 @@ extension_ldflags = \
+ 	-module \
+ 	-avoid-version
+ 
++extension_libadd = \
++	$(PYTHON_LIBS)
++
+ if OS_WIN32
+ # Windows requires Python modules to be explicitly linked to libpython.
+ # Extension modules are shared libaries (.dll), but need to be
+ # called .pyd for Python to load it as an extension module.
+-extension_libadd = \
+-	$(PYTHON_LIBS)
+-
+ extension_ldflags += \
+ 	-no-undefined \
+ 	-shrext ".pyd"
+--- pygobject-3.0.0/configure.ac.wiget	2011-09-24 19:56:06.566708752 +0200
++++ pygobject-3.0.0/configure.ac	2011-09-24 19:56:29.259058498 +0200
+@@ -102,9 +102,7 @@ if test $build_py3k = true ; then
+ fi
+ 
+ AM_CHECK_PYTHON_HEADERS(, AC_MSG_ERROR([Python headers not found]))
+-if test "x$os_win32" = "xyes"; then
+   AM_CHECK_PYTHON_LIBS(, AC_MSG_ERROR([Python libs not found. Windows requires Python modules to be explicitly linked to libpython.]))
+-fi
+ 
+ AC_MSG_CHECKING([for PySignal_SetWakeupFd in Python.h])
+ old_CPPFLAGS=$CPPFLAGS
+--- pygobject-3.0.0/gi/_gobject/Makefile.am.wiget	2011-09-24 20:07:59.829604244 +0200
++++ pygobject-3.0.0/gi/_gobject/Makefile.am	2011-09-24 20:08:32.401508942 +0200
+@@ -12,13 +12,13 @@ extension_ldflags = \
+ 	-module \
+ 	-avoid-version
+ 
++extension_libadd = \
++	$(PYTHON_LIBS)
++
+ if OS_WIN32
+ # Windows requires Python modules to be explicitly linked to libpython.
+ # Extension modules are shared libaries (.dll), but need to be
+ # called .pyd for Python to load it as an extension module.
+-extension_libadd = \
+-	$(PYTHON_LIBS)
+-
+ extension_ldflags += \
+ 	-no-undefined \
+ 	-shrext ".pyd"
+--- pygobject-3.0.0/gi/_glib/Makefile.am.wiget	2011-09-24 20:07:15.244891968 +0200
++++ pygobject-3.0.0/gi/_glib/Makefile.am	2011-09-24 20:07:33.914073757 +0200
+@@ -8,13 +8,13 @@ extension_ldflags = \
+ 	-module \
+ 	-avoid-version
+ 
++extension_libadd = \
++	$(PYTHON_LIBS)
++
+ if OS_WIN32
+ # Windows requires Python modules to be explicitly linked to libpython.
+ # Extension modules are shared libaries (.dll), but need to be
+ # called .pyd for Python to load it as an extension module.
+-extension_libadd = \
+-	$(PYTHON_LIBS)
+-
+ extension_ldflags += \
+ 	-no-undefined \
+ 	-shrext ".pyd"

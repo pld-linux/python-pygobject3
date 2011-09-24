@@ -1,5 +1,3 @@
-# TODO:
-# - header file is needed by python-pygobject3-devel and python3-pygobject3-devel
 #
 # Conditional build:
 %bcond_without	python2		# Python 2.x module
@@ -11,12 +9,13 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
 Version:	3.0.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.0/%{module}-%{version}.tar.xz
 # Source0-md5:	42b940ec9ed64b1c5f0e79164cd0c93f
 URL:		http://www.pygtk.org/
+Patch0:		link.patch
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 1:2.24.0
@@ -33,17 +32,14 @@ BuildRequires:	python-pycairo-devel >= 1.2.0
 %pyrequires_eq	python-modules
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 3.1
-BuildRequires:	python3-devel >= 3.1
-BuildRequires:	python3-modules >= 3.1
+BuildRequires:	python3 >= 3.2.2-3
+BuildRequires:	python3-devel >= 3.2.2-3
+BuildRequires:	python3-modules >= 3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.24.0
 Requires:	gobject-introspection >= 1.29.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# python provides Py* and _Py* symbols at runtime
-%define		skip_post_check_so	libpyglib-gi-2.0-python3?.so.*
 
 %description
 Python bindings for GObject library.
@@ -142,6 +138,7 @@ Dokumentacja API pygobject.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -154,6 +151,7 @@ mkdir py3
 cd py3
 ../%configure \
 	PYTHON=/usr/bin/python3 \
+	PYTHON_LIBS=-lpython3 \
 	--disable-silent-rules
 %{__make}
 cd ..
@@ -163,6 +161,7 @@ mkdir py2
 cd py2
 ../%configure \
 	PYTHON=%{__python} \
+	PYTHON_LIBS=-lpython \
 	--disable-silent-rules
 %{__make}
 cd ..
