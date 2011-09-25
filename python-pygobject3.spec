@@ -9,7 +9,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
 Version:	3.0.0
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.0/%{module}-%{version}.tar.xz
@@ -39,6 +39,7 @@ BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.24.0
 Requires:	gobject-introspection >= 1.29.0
+Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,6 +87,7 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 %package -n python3-pygobject3
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
+Conflicts:	python3-pygobject < 2.28.6-3
 Group:		Libraries/Python
 
 %description -n python3-pygobject3
