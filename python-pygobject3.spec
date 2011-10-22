@@ -8,12 +8,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
-Version:	3.0.1
+Version:	3.0.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.0/%{module}-%{version}.tar.xz
-# Source0-md5:	34d495790d64107bbdd5afb4137abb06
+# Source0-md5:	63762bc671943550fc553fbc59d831fb
 URL:		http://www.pygtk.org/
 Patch0:		link.patch
 BuildRequires:	autoconf >= 2.52
@@ -57,14 +57,14 @@ Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 
 %description common-devel
-This package contains headers files required to build wrappers
-for GObject addon libraries so that they interoperate with Python
+This package contains headers files required to build wrappers for
+GObject addon libraries so that they interoperate with Python
 bindings.
 
 %description common-devel -l pl.UTF-8
-Pakiet zawiera pliki nagłówkowe wymagane do zbudowania funkcji 
-do biblioteki GObject, tak by mogły te biblioteki kooperowaći
-z wiązaniami Pythona.
+Pakiet zawiera pliki nagłówkowe wymagane do zbudowania funkcji do
+biblioteki GObject, tak by mogły te biblioteki kooperowaći z
+wiązaniami Pythona.
 
 %package devel
 Summary:	Python bindings for GObject library
@@ -87,8 +87,8 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 %package -n python3-pygobject3
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
-Conflicts:	python3-pygobject < 2.28.6-3
 Group:		Libraries/Python
+Conflicts:	python3-pygobject < 2.28.6-3
 
 %description -n python3-pygobject3
 Python 3.x bindings for GObject library.
@@ -100,11 +100,11 @@ Wiązania Pythona 3.x do biblioteki GObject.
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
+Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 Requires:	python3-devel >= 3.1
 Requires:	python3-pygobject3 = %{version}-%{release}
-Requires:	%{name}-common-devel = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
 This package contains files required to build wrappers for GObject
