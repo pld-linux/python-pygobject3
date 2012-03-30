@@ -23,6 +23,7 @@ BuildRequires:	gobject-introspection-devel >= 1.32.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig(libffi) >= 3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -88,6 +89,8 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
+Requires:	glib2 >= 1:2.32.0
+Requires:	gobject-introspection >= 1.32.0
 Conflicts:	python3-pygobject < 2.28.6-3
 
 %description -n python3-pygobject3
