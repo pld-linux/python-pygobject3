@@ -1,0 +1,3 @@
+- updated to 2.12.0
+- removed jhflags.m4, python.m4 and as-ac-expand.m4 sources (already
+  included in tarball)
