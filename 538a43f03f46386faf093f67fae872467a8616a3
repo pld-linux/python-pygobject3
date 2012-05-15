@@ -1,0 +1,2 @@
+- 2.11.3, removed typename patch (already in sources), updated deps,
+ added as-ac-expand.m4 to sources
