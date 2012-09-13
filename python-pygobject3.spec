@@ -2,14 +2,13 @@
 # Conditional build:
 %bcond_without	python2		# Python 2.x module
 %bcond_without	python3		# Python 3.x module
-#
+
 %define		module	pygobject
-#
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
 Version:	3.2.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.2/%{module}-%{version}.tar.xz
@@ -204,6 +203,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%post	-n python3-pygobject3 -p /sbin/ldconfig
+%postun	-n python3-pygobject3 -p /sbin/ldconfig
 
 %if %{with python2}
 %files
