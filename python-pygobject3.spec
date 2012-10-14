@@ -27,7 +27,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with python2}
-BuildRequires:	python-devel >= 1:2.5.2
+BuildRequires:	python-devel >= 1:2.6
 BuildRequires:	python-pycairo-devel >= 1.2.0
 %pyrequires_eq	python-modules
 %endif
@@ -74,7 +74,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.34.0
 Requires:	libffi-devel >= 3.0
-Requires:	python-devel >= 1:2.5.2
+Requires:	python-devel >= 1:2.6
 
 %description devel
 This package contains files required to build wrappers for GObject
@@ -88,7 +88,7 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
-Requires:	glib2 >= 1:2.32.0
+Requires:	glib2 >= 1:2.34.0
 Requires:	gobject-introspection >= 1.34.0
 Conflicts:	python3-pygobject < 2.28.6-3
 
