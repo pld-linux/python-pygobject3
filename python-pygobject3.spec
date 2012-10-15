@@ -227,6 +227,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/gi/_gobject
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
+%{py_sitescriptdir}/pygobject-%{version}-py*.egg-info
 
 %files common-devel
 %defattr(644,root,root,755)
@@ -263,6 +264,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.*so
 %{py3_sitedir}/gi/_gobject/*.py*
 #%{py3_sitedir}/gobject/__pycache__
+%{py3_sitescriptdir}/pygobject-%{version}-py*.egg-info
 
 %files -n python3-pygobject3-devel
 %defattr(644,root,root,755)
