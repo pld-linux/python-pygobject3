@@ -7,18 +7,18 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
-Version:	3.4.1
+Version:	3.4.1.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.4/%{module}-%{version}.tar.xz
-# Source0-md5:	da00fff486523d1652a49f5a10418dc2
+# Source0-md5:	949cffe0ae8e13ac84794b04e2b58aeb
 URL:		http://www.pygtk.org/
 Patch0:		link.patch
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 1:2.34.0
-BuildRequires:	gobject-introspection-devel >= 1.34.0
+BuildRequires:	gobject-introspection-devel >= 1.34.1.1
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -38,7 +38,7 @@ BuildRequires:	python3-modules >= 3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.34.0
-Requires:	gobject-introspection >= 1.34.0
+Requires:	gobject-introspection >= 1.34.1.1
 Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -89,7 +89,7 @@ Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
 Requires:	glib2 >= 1:2.34.0
-Requires:	gobject-introspection >= 1.34.0
+Requires:	gobject-introspection >= 1.34.1.1
 Conflicts:	python3-pygobject < 2.28.6-3
 
 %description -n python3-pygobject3
@@ -227,7 +227,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/gi/_gobject
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
-%{py_sitescriptdir}/pygobject-%{version}-py*.egg-info
+%{py_sitedir}/pygobject-%{version}-py*.egg-info
 
 %files common-devel
 %defattr(644,root,root,755)
@@ -264,7 +264,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.*so
 %{py3_sitedir}/gi/_gobject/*.py*
 #%{py3_sitedir}/gobject/__pycache__
-%{py3_sitescriptdir}/pygobject-%{version}-py*.egg-info
+%{py3_sitedir}/pygobject-%{version}-py*.egg-info
 
 %files -n python3-pygobject3-devel
 %defattr(644,root,root,755)
