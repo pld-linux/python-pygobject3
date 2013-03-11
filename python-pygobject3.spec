@@ -17,6 +17,7 @@ URL:		https://live.gnome.org/PyGObject
 Patch0:		link.patch
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.11
+BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.34.0
 BuildRequires:	gobject-introspection-devel >= 1.34.1.1
 BuildRequires:	libffi-devel >= 3.0
