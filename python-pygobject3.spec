@@ -13,7 +13,7 @@ License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.4/%{module}-%{version}.tar.xz
 # Source0-md5:	a17b3897507f179d643e02f5abf111ac
-URL:		http://www.pygtk.org/
+URL:		https://live.gnome.org/PyGObject
 Patch0:		link.patch
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.11
