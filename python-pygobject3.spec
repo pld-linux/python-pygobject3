@@ -7,21 +7,21 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}3
-Version:	3.4.2
+Version:	3.8.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.4/%{module}-%{version}.tar.xz
-# Source0-md5:	a17b3897507f179d643e02f5abf111ac
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.8/%{module}-%{version}.tar.xz
+# Source0-md5:	5a1dc34c787b4320da032e87412caca4
 URL:		https://live.gnome.org/PyGObject
 Patch0:		link.patch
-BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	autoconf >= 2.68
+BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	cairo-gobject-devel
-BuildRequires:	glib2-devel >= 1:2.34.0
+BuildRequires:	glib2-devel >= 1:2.34.2
 BuildRequires:	gobject-introspection-devel >= 1.34.1.1
 BuildRequires:	libffi-devel >= 3.0
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2.2.6
 BuildRequires:	pkgconfig
 BuildRequires:	pkgconfig(libffi) >= 3.0
 BuildRequires:	rpm-pythonprov
@@ -30,7 +30,7 @@ BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.6
 BuildRequires:	python-pycairo-devel >= 1.2.0
-%pyrequires_eq	python-modules
+Requires:	python-modules
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 3.2.2-3
@@ -38,7 +38,7 @@ BuildRequires:	python3-devel >= 3.2.2-3
 BuildRequires:	python3-modules >= 3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
-Requires:	glib2 >= 1:2.34.0
+Requires:	glib2 >= 1:2.34.2
 Requires:	gobject-introspection >= 1.34.1.1
 Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +54,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.0
+Requires:	glib2-devel >= 1:2.34.2
 Requires:	libffi-devel >= 3.0
 
 %description common-devel
@@ -73,7 +73,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.0
+Requires:	glib2-devel >= 1:2.34.2
 Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.6
 
@@ -89,7 +89,7 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
-Requires:	glib2 >= 1:2.34.0
+Requires:	glib2 >= 1:2.34.2
 Requires:	gobject-introspection >= 1.34.1.1
 Conflicts:	python3-pygobject < 2.28.6-3
 
@@ -104,9 +104,9 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.0
+Requires:	glib2-devel >= 1:2.34.2
 Requires:	libffi-devel >= 3.0
-Requires:	python3-devel >= 3.1
+Requires:	python3-devel >= 3.2
 Requires:	python3-pygobject3 = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
@@ -128,18 +128,6 @@ This package contains example programs for GObject library.
 
 %description examples -l pl.UTF-8
 Ten pakiet zawiera przykładowe programy dla biblioteki GObject.
-
-%package apidocs
-Summary:	pygobject API documentation
-Summary(pl.UTF-8):	Dokumentacja API pygobject
-Group:		Documentation
-Requires:	gtk-doc-common
-
-%description apidocs
-pygobject API documentation.
-
-%description apidocs -l pl.UTF-8
-Dokumentacja API pygobject.
 
 %prep
 %setup -q -n %{module}-%{version}
@@ -215,19 +203,21 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpyglib-gi-2.0-python.so.0
 %dir %{py_sitedir}/gi
+%attr(755,root,root) %{py_sitedir}/gi/_gi.so
+%attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
+%{py_sitedir}/gi/*.py[co]
 %dir %{py_sitedir}/gi/overrides
 %{py_sitedir}/gi/overrides/*.py[co]
 %dir %{py_sitedir}/gi/repository
 %{py_sitedir}/gi/repository/*.py[co]
-%{py_sitedir}/gi/*.py[co]
-%attr(755,root,root) %{py_sitedir}/gi/_gi.so
-%attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
 %dir %{py_sitedir}/gi/_glib
 %attr(755,root,root) %{py_sitedir}/gi/_glib/_glib.so
 %{py_sitedir}/gi/_glib/*.py[co]
 %dir %{py_sitedir}/gi/_gobject
 %attr(755,root,root) %{py_sitedir}/gi/_gobject/_gobject.so
 %{py_sitedir}/gi/_gobject/*.py[co]
+%dir %{py_sitedir}/pygtkcompat
+%{py_sitedir}/pygtkcompat/*.py[co]
 %{py_sitedir}/pygobject-%{version}-py*.egg-info
 
 %files common-devel
@@ -247,24 +237,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python3.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpyglib-gi-2.0-python3.so.0
 %dir %{py3_sitedir}/gi
-%dir %{py3_sitedir}/gi/overrides
-%{py3_sitedir}/gi/overrides/*.py*
-#%{py3_sitedir}/gi/overrides/__pycache__
-%dir %{py3_sitedir}/gi/repository
-%{py3_sitedir}/gi/repository/*.py*
-#%{py3_sitedir}/gi/repository/__pycache__
-%{py3_sitedir}/gi/*.py*
-#%{py3_sitedir}/gi/__pycache__
 %attr(755,root,root) %{py3_sitedir}/gi/_gi.*so
 %attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.*so
+%{py3_sitedir}/gi/*.py*
+%{py3_sitedir}/gi/__pycache__
+%dir %{py3_sitedir}/gi/overrides
+%{py3_sitedir}/gi/overrides/*.py*
+%{py3_sitedir}/gi/overrides/__pycache__
+%dir %{py3_sitedir}/gi/repository
+%{py3_sitedir}/gi/repository/*.py*
+%{py3_sitedir}/gi/repository/__pycache__
 %dir %{py3_sitedir}/gi/_glib
 %attr(755,root,root) %{py3_sitedir}/gi/_glib/_glib.*so
 %{py3_sitedir}/gi/_glib/*.py*
-#%{py3_sitedir}/glib/__pycache__
+%{py3_sitedir}/gi/_glib/__pycache__
 %dir %{py3_sitedir}/gi/_gobject
 %attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.*so
 %{py3_sitedir}/gi/_gobject/*.py*
-#%{py3_sitedir}/gobject/__pycache__
+%{py3_sitedir}/gi/_gobject/__pycache__
+%dir %{py3_sitedir}/pygtkcompat
+%{py3_sitedir}/pygtkcompat/*.py*
+%{py3_sitedir}/pygtkcompat/__pycache__
 %{py3_sitedir}/pygobject-%{version}-py*.egg-info
 
 %files -n python3-pygobject3-devel
@@ -275,7 +268,3 @@ rm -rf $RPM_BUILD_ROOT
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
-
-#%files apidocs
-#%defattr(644,root,root,755)
-#%{_gtkdocdir}/%{module}
