@@ -7,20 +7,20 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.8.3
+Version:	3.10.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.8/%{module}-%{version}.tar.xz
-# Source0-md5:	1621d68fcd522575ed0a9e7017004319
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.10/%{module}-%{version}.tar.xz
+# Source0-md5:	54eebf75547abc6b97a90a150160e154
 Patch0:		link.patch
 URL:		https://live.gnome.org/PyGObject
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.11.1
 %{?with_python3:BuildRequires:	automake >= 1:1.13}
 BuildRequires:	cairo-gobject-devel
-BuildRequires:	glib2-devel >= 1:2.34.2
-BuildRequires:	gobject-introspection-devel >= 1.34.2
+BuildRequires:	glib2-devel >= 1:2.35.9
+BuildRequires:	gobject-introspection-devel >= 1.35.9
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
@@ -29,9 +29,9 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with python2}
-BuildRequires:	python-devel >= 1:2.6
+BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pycairo-devel >= 1.2.0
-Requires:	python-modules
+Requires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 3.2.2-3
@@ -39,8 +39,8 @@ BuildRequires:	python3-devel >= 3.2.2-3
 BuildRequires:	python3-modules >= 3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
-Requires:	glib2 >= 1:2.34.2
-Requires:	gobject-introspection >= 1.34.2
+Requires:	glib2 >= 1:2.35.9
+Requires:	gobject-introspection >= 1.35.9
 Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,7 +55,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.2
+Requires:	glib2-devel >= 1:2.35.9
 Requires:	libffi-devel >= 3.0
 
 %description common-devel
@@ -74,7 +74,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.2
+Requires:	glib2-devel >= 1:2.35.9
 Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.6
 
@@ -90,8 +90,8 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
-Requires:	glib2 >= 1:2.34.2
-Requires:	gobject-introspection >= 1.34.2
+Requires:	glib2 >= 1:2.35.9
+Requires:	gobject-introspection >= 1.35.9
 Conflicts:	python3-pygobject < 2.28.6-3
 
 %description -n python3-pygobject3
@@ -105,7 +105,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.2
+Requires:	glib2-devel >= 1:2.35.9
 Requires:	libffi-devel >= 3.0
 Requires:	python3-devel >= 3.2
 Requires:	python3-pygobject3 = %{version}-%{release}
@@ -238,16 +238,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpyglib-gi-2.0-python3.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpyglib-gi-2.0-python3.so.0
 %dir %{py3_sitedir}/gi
-%attr(755,root,root) %{py3_sitedir}/gi/_gi.so
-%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.so
+%attr(755,root,root) %{py3_sitedir}/gi/_gi.cpython*.so
+%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.cpython*.so
 %{py3_sitedir}/gi/*.py
 %{py3_sitedir}/gi/__pycache__
 %dir %{py3_sitedir}/gi/_glib
-%attr(755,root,root) %{py3_sitedir}/gi/_glib/_glib.so
+%attr(755,root,root) %{py3_sitedir}/gi/_glib/_glib.cpython*.so
 %{py3_sitedir}/gi/_glib/*.py
 %{py3_sitedir}/gi/_glib/__pycache__
 %dir %{py3_sitedir}/gi/_gobject
-%attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.so
+%attr(755,root,root) %{py3_sitedir}/gi/_gobject/_gobject.cpython*.so
 %{py3_sitedir}/gi/_gobject/*.py
 %{py3_sitedir}/gi/_gobject/__pycache__
 %dir %{py3_sitedir}/gi/overrides
