@@ -20,6 +20,7 @@ BuildRequires:	automake >= 1:1.11.1
 %{?with_python3:BuildRequires:	automake >= 1:1.13}
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.35.9
+BuildRequires:	gnome-common >= 3.10
 BuildRequires:	gobject-introspection-devel >= 1.35.9
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool >= 2:2.2.6
