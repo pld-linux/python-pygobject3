@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.12.1
+Version:	3.12.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.12/%{module}-%{version}.tar.xz
-# Source0-md5:	8608682f221feaac81adb3f4e40dbef3
+# Source0-md5:	fd9b1e956ee2e2dae544e57b1858596b
 Patch0:		link.patch
 URL:		https://live.gnome.org/PyGObject
 BuildRequires:	autoconf >= 2.68
