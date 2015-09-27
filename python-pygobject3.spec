@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.16.2
-Release:	3
+Version:	3.18.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.16/%{module}-%{version}.tar.xz
-# Source0-md5:	8a3720efa69dd2d520e0b21b5d9e7c19
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.18/%{module}-%{version}.tar.xz
+# Source0-md5:	2ac5d4398e7ecabf64b3deb65c799516
 Patch0:		link.patch
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	autoconf >= 2.68
@@ -25,7 +25,6 @@ BuildRequires:	gobject-introspection-devel >= 1.39.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
-BuildRequires:	pkgconfig(libffi) >= 3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
