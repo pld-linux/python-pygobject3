@@ -31,7 +31,6 @@ BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pycairo-devel >= 1.2.0
-Requires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 3.2.2-3
@@ -41,6 +40,7 @@ BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.38.0
 Requires:	gobject-introspection >= 1.38.0
+Requires:	python-modules >= 1:2.7
 Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -146,7 +146,8 @@ cd py3
 ../%configure \
 	PYTHON=/usr/bin/python3 \
 	PYTHON_LIBS=-lpython3 \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{?with_python2:--without-common}
 %{__make}
 cd ..
 %endif
