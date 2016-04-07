@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.18.2
-Release:	2
+Version:	3.20.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.18/%{module}-%{version}.tar.xz
-# Source0-md5:	0a956f3e785e23b0f136832f2e57a862
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.20/%{module}-%{version}.tar.xz
+# Source0-md5:	ebb9e5c75ff6405a4f6d017a5766c205
 Patch0:		link.patch
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	autoconf >= 2.68
@@ -21,7 +21,7 @@ BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gnome-common >= 3.10
-BuildRequires:	gobject-introspection-devel >= 1.39.0
+BuildRequires:	gobject-introspection-devel >= 1.46.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
@@ -39,7 +39,7 @@ BuildRequires:	python3-modules >= 3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.38.0
-Requires:	gobject-introspection >= 1.38.0
+Requires:	gobject-introspection >= 1.46.0
 Requires:	python-modules >= 1:2.7
 Conflicts:	python-pygobject < 2.28.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -91,7 +91,7 @@ Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
 Requires:	glib2 >= 1:2.38.0
-Requires:	gobject-introspection >= 1.39.0
+Requires:	gobject-introspection >= 1.46.0
 Conflicts:	python3-pygobject < 2.28.6-3
 
 %description -n python3-pygobject3
