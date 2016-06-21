@@ -7,16 +7,16 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.20.0
+Version:	3.20.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.20/%{module}-%{version}.tar.xz
-# Source0-md5:	ebb9e5c75ff6405a4f6d017a5766c205
+# Source0-md5:	4354c6283b135f859563b72457f6a321
 Patch0:		link.patch
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	autoconf >= 2.68
-BuildRequires:	automake >= 1:1.11.1
+BuildRequires:	automake >= 1:1.12.6
 %{?with_python3:BuildRequires:	automake >= 1:1.13}
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.38.0
@@ -33,9 +33,9 @@ BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pycairo-devel >= 1.2.0
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 3.2.2-3
-BuildRequires:	python3-devel >= 3.2.2-3
-BuildRequires:	python3-modules >= 3.2.2-3
+BuildRequires:	python3 >= 1:3.2.2-3
+BuildRequires:	python3-devel >= 1:3.2.2-3
+BuildRequires:	python3-modules >= 1:3.2.2-3
 BuildRequires:	python3-pycairo-devel >= 1.10.0
 %endif
 Requires:	glib2 >= 1:2.38.0
@@ -107,7 +107,7 @@ Group:		Development/Languages/Python
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	libffi-devel >= 3.0
-Requires:	python3-devel >= 3.2
+Requires:	python3-devel >= 1:3.2
 Requires:	python3-pygobject3 = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
