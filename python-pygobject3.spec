@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.24.1
+Version:	3.28.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.24/%{module}-%{version}.tar.xz
-# Source0-md5:	69a843311d0f0385dff376e11a2d83d2
+# Source0-md5:	612e9e2863d117d810e78672f7bc3ad6
 Patch0:		link.patch
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	autoconf >= 2.68
@@ -30,13 +30,13 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.7
-BuildRequires:	python-pycairo-devel >= 1.2.0
+BuildRequires:	python-pycairo-devel >= 1.11.1
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 1:3.2.2-3
 BuildRequires:	python3-devel >= 1:3.2.2-3
 BuildRequires:	python3-modules >= 1:3.2.2-3
-BuildRequires:	python3-pycairo-devel >= 1.10.0
+BuildRequires:	python3-pycairo-devel >= 1.11.1
 %endif
 Requires:	glib2 >= 1:2.38.0
 Requires:	gobject-introspection >= 1.46.0
@@ -193,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc ChangeLog NEWS README.rst
 %dir %{py_sitedir}/gi
 %attr(755,root,root) %{py_sitedir}/gi/_gi.so
 %attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
@@ -202,8 +202,6 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/gi/overrides/*.py[co]
 %dir %{py_sitedir}/gi/repository
 %{py_sitedir}/gi/repository/*.py[co]
-%dir %{py_sitedir}/gi/_gobject
-%{py_sitedir}/gi/_gobject/*.py[co]
 %dir %{py_sitedir}/pygtkcompat
 %{py_sitedir}/pygtkcompat/*.py[co]
 %{py_sitedir}/pygobject-%{version}-py*.egg-info
@@ -220,15 +218,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-pygobject3
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc ChangeLog NEWS README.rst
 %dir %{py3_sitedir}/gi
 %attr(755,root,root) %{py3_sitedir}/gi/_gi.cpython*.so
 %attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.cpython*.so
 %{py3_sitedir}/gi/*.py
 %{py3_sitedir}/gi/__pycache__
-%dir %{py3_sitedir}/gi/_gobject
-%{py3_sitedir}/gi/_gobject/*.py
-%{py3_sitedir}/gi/_gobject/__pycache__
 %dir %{py3_sitedir}/gi/overrides
 %{py3_sitedir}/gi/overrides/*.py
 %{py3_sitedir}/gi/overrides/__pycache__
