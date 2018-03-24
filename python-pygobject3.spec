@@ -11,7 +11,7 @@ Version:	3.28.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.24/%{module}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.28/%{module}-%{version}.tar.xz
 # Source0-md5:	612e9e2863d117d810e78672f7bc3ad6
 Patch0:		link.patch
 URL:		https://wiki.gnome.org/Projects/PyGObject
