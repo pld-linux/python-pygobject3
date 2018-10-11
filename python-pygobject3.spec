@@ -2,41 +2,46 @@
 # Conditional build:
 %bcond_without	python2		# Python 2.x module
 %bcond_without	python3		# Python 3.x module
+%bcond_without	doc		# Sphinx documentation
+%bcond_with	tests		# unit tests (fail at the beginning as of 3.30.1)
 
 %define		module	pygobject
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.28.2
-Release:	2
+Version:	3.30.1
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.28/%{module}-%{version}.tar.xz
-# Source0-md5:	bda3178850e3ae886eef3acc7056b51a
-Patch0:		link.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.30/%{module}-%{version}.tar.xz
+# Source0-md5:	77ba5f41a00d5c0cc22962a475f8de67
 URL:		https://wiki.gnome.org/Projects/PyGObject
-BuildRequires:	autoconf >= 2.68
-BuildRequires:	automake >= 1:1.12.6
-%{?with_python3:BuildRequires:	automake >= 1:1.13}
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.38.0
-BuildRequires:	gnome-common >= 3.10
 BuildRequires:	gobject-introspection-devel >= 1.46.0
 BuildRequires:	libffi-devel >= 3.0
-BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+%{?with_doc:BuildRequires:	sphinx-pdg}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pycairo-devel >= 1.11.1
+BuildRequires:	python-setuptools
+%if %{with tests}
+BuildRequires:	python-pytest
+%endif
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 1:3.2.2-3
-BuildRequires:	python3-devel >= 1:3.2.2-3
-BuildRequires:	python3-modules >= 1:3.2.2-3
+BuildRequires:	python3 >= 1:3.5
+BuildRequires:	python3-devel >= 1:3.5
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-pycairo-devel >= 1.11.1
+BuildRequires:	python3-setuptools
+%if %{with tests}
+BuildRequires:	python3-pytest
+%endif
 %endif
 Requires:	glib2 >= 1:2.38.0
 Requires:	gobject-introspection >= 1.46.0
@@ -76,7 +81,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	libffi-devel >= 3.0
-Requires:	python-devel >= 1:2.6
+Requires:	python-devel >= 1:2.7
 
 %description devel
 This metapackage gathers files required to develop GObject bindings
@@ -107,7 +112,7 @@ Group:		Development/Languages/Python
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	libffi-devel >= 3.0
-Requires:	python3-devel >= 1:3.2
+Requires:	python3-devel >= 1:3.5
 Requires:	python3-pygobject3 = %{version}-%{release}
 
 %description -n python3-pygobject3-devel
@@ -118,11 +123,28 @@ for Python 3.
 Ten metapakiet gromadzi pliki wymagane do tworzenia wiązań biblioteki
 GObject dla Pythona 3.
 
+%package apidocs
+Summary:	API documentation for Python GObject library
+Summary(pl.UTF-8):	Dokumentacja biblioteki Pythona GObject
+Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description apidocs
+API documentation for Python GObject library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja biblioteki Pythona GObject.
+
 %package examples
 Summary:	Example programs for GObject library
 Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description examples
 This package contains example programs for GObject library.
@@ -132,60 +154,35 @@ Ten pakiet zawiera przykładowe programy dla biblioteki GObject.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%if %{with python3}
-mkdir py3
-cd py3
-../%configure \
-	PYTHON=/usr/bin/python3 \
-	PYTHON_LIBS=-lpython3 \
-	--disable-silent-rules \
-	%{?with_python2:--without-common}
-%{__make}
-cd ..
-%endif
 %if %{with python2}
-mkdir py2
-cd py2
-../%configure \
-	PYTHON=%{__python} \
-	PYTHON_LIBS=-lpython \
-	--disable-silent-rules
-%{__make}
-cd ..
+%py_build %{?with_tests:test}
+%endif
+
+%if %{with python3}
+%py3_build %{?with_tests:test}
+%endif
+
+%if %{with doc}
+%{__make} -C docs
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%if %{with python3}
-%{__make} -C py3 -j 1 install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	TARGET_DIR=%{_gtkdocdir}/%{module}
-%endif
 %if %{with python2}
-%{__make} -C py2 -j 1 install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	TARGET_DIR=%{_gtkdocdir}/%{module}
+%py_install
+
+%py_postclean
+%endif
+
+%if %{with python3}
+%py3_install
 %endif
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
-%if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gi/*.la
-%py_postclean
-%endif
-%if %{with python3}
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/gi/*.la
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -193,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README.rst
+%doc NEWS README.rst
 %dir %{py_sitedir}/gi
 %attr(755,root,root) %{py_sitedir}/gi/_gi.so
 %attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
@@ -204,7 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/gi/repository/*.py[co]
 %dir %{py_sitedir}/pygtkcompat
 %{py_sitedir}/pygtkcompat/*.py[co]
-%{py_sitedir}/pygobject-%{version}-py*.egg-info
+%{py_sitedir}/PyGObject-%{version}-py*.egg-info
 
 %files common-devel
 %defattr(644,root,root,755)
@@ -218,7 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-pygobject3
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README.rst
+%doc NEWS README.rst
 %dir %{py3_sitedir}/gi
 %attr(755,root,root) %{py3_sitedir}/gi/_gi.cpython*.so
 %attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.cpython*.so
@@ -233,10 +230,16 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/pygtkcompat
 %{py3_sitedir}/pygtkcompat/*.py
 %{py3_sitedir}/pygtkcompat/__pycache__
-%{py3_sitedir}/pygobject-%{version}-py*.egg-info
+%{py3_sitedir}/PyGObject-%{version}-py*.egg-info
 
 %files -n python3-pygobject3-devel
 %defattr(644,root,root,755)
+%endif
+
+%if %{with doc}
+%files apidocs
+%defattr(644,root,root,755)
+%doc docs/_build/{_images,_static,devguide,guide,*.html,*.js}
 %endif
 
 %files examples
