@@ -9,15 +9,15 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.30.4
+Version:	3.32.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.30/%{module}-%{version}.tar.xz
-# Source0-md5:	d42f8ec30faa76a25f7d0afc88b4d822
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.32/%{module}-%{version}.tar.xz
+# Source0-md5:	6e39bca1d19a27cde4435061dd59578a
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	cairo-gobject-devel
-BuildRequires:	glib2-devel >= 1:2.38.0
+BuildRequires:	glib2-devel >= 1:2.48.0
 BuildRequires:	gobject-introspection-devel >= 1.46.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	pkgconfig
@@ -43,7 +43,7 @@ BuildRequires:	python3-setuptools
 BuildRequires:	python3-pytest
 %endif
 %endif
-Requires:	glib2 >= 1:2.38.0
+Requires:	glib2 >= 1:2.48.0
 Requires:	gobject-introspection >= 1.46.0
 Requires:	python-modules >= 1:2.7
 Conflicts:	python-pygobject < 2.28.6-3
@@ -60,7 +60,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.38.0
+Requires:	glib2-devel >= 1:2.48.0
 Requires:	libffi-devel >= 3.0
 
 %description common-devel
@@ -79,7 +79,7 @@ Summary(pl.UTF-8):	Wiązania Pythona 2 do biblioteki GObject - metapakiet progra
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.38.0
+Requires:	glib2-devel >= 1:2.48.0
 Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.7
 
@@ -95,7 +95,7 @@ GObject dla Pythona 2.
 Summary:	Python 3.x bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
 Group:		Libraries/Python
-Requires:	glib2 >= 1:2.38.0
+Requires:	glib2 >= 1:2.48.0
 Requires:	gobject-introspection >= 1.46.0
 Conflicts:	python3-pygobject < 2.28.6-3
 
@@ -110,7 +110,7 @@ Summary:	Python 3 bindings for GObject library - development metapackage
 Summary(pl.UTF-8):	Wiązania Pythona 3 do biblioteki GObject - metapakiet programistyczny
 Group:		Development/Languages/Python
 Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.38.0
+Requires:	glib2-devel >= 1:2.48.0
 Requires:	libffi-devel >= 3.0
 Requires:	python3-devel >= 1:3.5
 Requires:	python3-pygobject3 = %{version}-%{release}
