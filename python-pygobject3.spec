@@ -14,7 +14,7 @@ Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.32/%{module}-%{version}.tar.xz
-# Source0-md5:	8aef43815361d93916532cc571676e80
+# Source0-md5:	92ffa25351782feb96362f0dace2089f
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.48.0
