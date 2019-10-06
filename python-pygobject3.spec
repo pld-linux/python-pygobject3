@@ -3,18 +3,18 @@
 %bcond_without	python2		# Python 2.x module
 %bcond_without	python3		# Python 3.x module
 %bcond_without	doc		# Sphinx documentation
-%bcond_with	tests		# unit tests (fail at the beginning as of 3.30.1)
+%bcond_with	tests		# unit tests (require DISPLAY)
 
 %define		module	pygobject
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.32.2
+Version:	3.34.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.32/%{module}-%{version}.tar.xz
-# Source0-md5:	92ffa25351782feb96362f0dace2089f
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.34/%{module}-%{version}.tar.xz
+# Source0-md5:	ca1dc4f31c1d6d283758e8f315a88ab6
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.48.0
