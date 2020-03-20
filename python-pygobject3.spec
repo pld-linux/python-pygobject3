@@ -9,12 +9,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-pygobject3
-Version:	3.34.0
-Release:	3
+Version:	3.36.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.34/%{module}-%{version}.tar.xz
-# Source0-md5:	ca1dc4f31c1d6d283758e8f315a88ab6
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.36/%{module}-%{version}.tar.xz
+# Source0-md5:	3d05e4c3682d00d5fbe2383f418851b5
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	cairo-gobject-devel
 BuildRequires:	glib2-devel >= 1:2.48.0
@@ -154,6 +154,8 @@ Ten pakiet zawiera przykładowe programy dla biblioteki GObject.
 
 %prep
 %setup -q -n %{module}-%{version}
+
+%{__sed} -i -e '1s|#!/usr/bin/env python$|#!%{__python}|'  examples/cairo-demo.py
 
 %build
 %if %{with python2}
