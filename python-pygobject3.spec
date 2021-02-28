@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Wiązania Pythona 2 do biblioteki GObject
 Name:		python-pygobject3
 # keep 3.36.x here for python2 support
 Version:	3.36.1
-Release:	3
+Release:	4
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.36/%{module}-%{version}.tar.xz
@@ -130,9 +130,7 @@ GObject dla Pythona 3.
 Summary:	API documentation for Python GObject library
 Summary(pl.UTF-8):	Dokumentacja biblioteki Pythona GObject
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for Python GObject library.
@@ -145,9 +143,7 @@ Summary:	Example programs for GObject library
 Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description examples
 This package contains example programs for GObject library.
