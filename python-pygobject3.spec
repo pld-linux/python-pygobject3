@@ -16,7 +16,7 @@ Version:	3.36.1
 Release:	4
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.36/%{module}-%{version}.tar.xz
+Source0:	https://download.gnome.org/sources/pygobject/3.36/%{module}-%{version}.tar.xz
 # Source0-md5:	ebfebc4533856572281add29f08412bf
 URL:		https://wiki.gnome.org/Projects/PyGObject
 BuildRequires:	cairo-gobject-devel
