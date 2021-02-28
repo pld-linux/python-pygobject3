@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Wiązania Pythona 2 do biblioteki GObject
 Name:		python-pygobject3
 # keep 3.36.x here for python2 support
 Version:	3.36.1
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.36/%{module}-%{version}.tar.xz
