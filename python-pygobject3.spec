@@ -25,7 +25,7 @@ BuildRequires:	gobject-introspection-devel >= 1.46.0
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-%{?with_doc:BuildRequires:	sphinx-pdg}
+%{?with_doc:BuildRequires:	sphinx-pdg-2}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with python2}
@@ -166,7 +166,8 @@ Ten pakiet zawiera przykładowe programy dla biblioteki GObject.
 %endif
 
 %if %{with doc}
-%{__make} -C docs
+cd docs
+sphinx-build-2 -b html . _build
 %endif
 
 %install
